@@ -1,0 +1,51 @@
+<div class="leaderboard-container">
+    <h1 class="leaderboard-title">LEADER BOARD</h1>
+    <div class="leaderboard-columns">
+      <!-- Left Column Card -->
+      <div class="leaderboard-card">
+        <h2 class="column-title">Top 1-9</h2>
+        <div class="leaderboard-table">
+          <table>
+            <thead>
+              <tr>
+                <th>NO</th>
+                <th>Name</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let team of sortedTeams | slice:0:9; let i = index" [@fadeInAnimation]>
+                <td>{{ i + 1 }}</td>
+                <td>{{ team.name }}</td>
+                <td>{{ team.score }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      <!-- Right Column Card -->
+      <div class="leaderboard-card">
+        <h2 class="column-title">Top 10-18</h2>
+        <div class="leaderboard-table">
+          <table>
+            <thead>
+              <tr>
+                <th>NO</th>
+                <th>Name</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let team of sortedTeams | slice:9:18 ; let i = index" [@fadeInAnimation]>
+                <td>{{ i + 10 }}</td> <!-- Adding 9 to offset the index for the second column -->
+                <td>{{ team.name }}</td>
+                <td>{{ team.score }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

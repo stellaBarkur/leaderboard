@@ -1,0 +1,97 @@
+.leaderboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #ffffff;
+  }
+  
+  .leaderboard-title {
+    font-size: 3.5em;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #ff007f;
+    margin-bottom: 40px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  }
+  
+  .leaderboard-columns {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .leaderboard-card {
+    background-color: #2d2d44;
+    border-radius: 15px;
+    padding: 30px;
+    width: 48%;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .leaderboard-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .column-title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ff007f;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #ff007f;
+    padding-bottom: 10px;
+  }
+  
+  .leaderboard-table {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  th, td {
+    padding: 15px;
+    font-size: 1.4em; /* Increased font size */
+  }
+  
+  th {
+    font-weight: bold;
+    color: #ff007f;
+    border-bottom: 2px solid #ff007f;
+  }
+  
+  td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  table tr:hover {
+    background-color: rgba(255, 0, 127, 0.1);
+    transition: background-color 0.2s;
+  }
+  
+  table tr td {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

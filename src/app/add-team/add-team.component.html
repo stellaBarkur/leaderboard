@@ -1,0 +1,40 @@
+<div class="container">
+    <button routerLink="/leaderboard" class="title">LEADER BOARD</button>
+  
+    <div class="add-score">
+      <form (ngSubmit)="addTeam()">
+        <input [(ngModel)]="teamName" name="teamName" placeholder="Team Name" required />
+        <input type="number" [(ngModel)]="teamScore" name="teamScore" placeholder="Team Score" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  
+    <div class="recent-scores">
+      <button (click)="ClearAll()">CLEAR ALL TEAMS</button>
+      <table>
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let team of teams; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ team.name }}</td>
+            <td>
+              <span *ngIf="editIndex !== i">{{ team.score }}</span>
+              <input *ngIf="editIndex === i" type="number" [(ngModel)]="editScore" />
+            </td>
+            <td>
+              <button *ngIf="editIndex !== i" (click)="startEditing(i, team.score)">Edit</button>
+              <button *ngIf="editIndex === i" (click)="saveScore(team.id)">Save</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
