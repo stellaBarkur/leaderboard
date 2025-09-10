@@ -26,7 +26,7 @@
   
       <!-- Right Column Card -->
       <div class="leaderboard-card">
-        <h2 class="column-title">Top 10-18</h2>
+        <h2 class="column-title">Top 11-20</h2>
         <div class="leaderboard-table">
           <table>
             <thead>
@@ -38,7 +38,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let team of sortedTeams | slice:10:20 ; let i = index" [@fadeInAnimation]>
-                <td>{{ i + 10 }}</td> <!-- Adding 9 to offset the index for the second column -->
+                <td>{{ i + 11 }}</td> <!-- Adding 11 to offset the index for the second column -->
                 <td>{{ team.name }}</td>
                 <td>{{ team.score }}</td>
               </tr>
