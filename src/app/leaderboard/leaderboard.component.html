@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let team of sortedTeams | slice:0:10; let i = index" [@fadeInAnimation]>
+              <tr *ngFor="let team of sortedTeams | slice:0:6; let i = index" [@fadeInAnimation]>
                 <td>{{ i + 1 }}</td>
                 <td>{{ team.name }}</td>
                 <td>{{ team.score }}</td>
@@ -37,8 +37,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let team of sortedTeams | slice:10:20 ; let i = index" [@fadeInAnimation]>
-                <td>{{ i + 11 }}</td> <!-- Adding 11 to offset the index for the second column -->
+              <tr *ngFor="let team of sortedTeams | slice:6:12 ; let i = index" [@fadeInAnimation]>
+                <td>{{ i + 7 }}</td> <!-- Adding 11 to offset the index for the second column -->
                 <td>{{ team.name }}</td>
                 <td>{{ team.score }}</td>
               </tr>
