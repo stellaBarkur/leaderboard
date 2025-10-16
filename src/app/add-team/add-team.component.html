@@ -1,40 +1,95 @@
 <div class="container">
-    <button routerLink="/leaderboard" class="title">LEADER BOARD</button>
-  
-    <div class="add-score">
-      <form (ngSubmit)="addTeam()">
-        <input [(ngModel)]="teamName" name="teamName" placeholder="Team Name" required />
-        <input type="number" [(ngModel)]="teamScore" name="teamScore" placeholder="Team Score" required />
-        <button type="submit">Submit</button>
-      </form>
+  <button routerLink="/leaderboard" class="title">LEADER BOARD</button>
+
+  <!-- 🆕 Generate multiple teams section -->
+  <div style="margin-top: 15px;">
+    <label>Generate Multiple Teams:</label>
+    <div style="display: flex; gap: 8px;">
+      <input
+        [(ngModel)]="teamCount"
+        type="number"
+        placeholder="Number of Teams (1–20)"
+        min="1"
+        max="20"
+        style="flex: 1; width: 60%; margin: 0;"
+      />
+      <button (click)="generateTeams()" style="width: 40%;">Create</button>
     </div>
-  
-    <div class="recent-scores">
-      <button (click)="ClearAll()">CLEAR ALL TEAMS</button>
-      <table>
-        <thead>
-          <tr>
-            <th>NO</th>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let team of teams; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ team.name }}</td>
-            <td>
-              <span *ngIf="editIndex !== i">{{ team.score }}</span>
-              <input *ngIf="editIndex === i" type="number" [(ngModel)]="editScore" />
-            </td>
-            <td>
-              <button *ngIf="editIndex !== i" (click)="startEditing(i, team.score)">Edit</button>
-              <button *ngIf="editIndex === i" (click)="saveScore(team.id)">Save</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <p *ngIf="errorMessage" style="color: red; font-size: 13px; margin-top: 4px;">
+      {{ errorMessage }}
+    </p>
   </div>
-  
+
+  <!-- Add single team -->
+  <div class="add-score">
+    <form (ngSubmit)="addTeam()">
+      <input [(ngModel)]="teamName" name="teamName" placeholder="Team Name" required />
+      <input
+        type="number"
+        [(ngModel)]="teamScore"
+        name="teamScore"
+        placeholder="Team Score"
+        required
+      />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- Teams list -->
+  <div class="recent-scores">
+    <button (click)="ClearAll()">CLEAR ALL TEAMS</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>NO</th>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams; let i = index">
+          <td>{{ i + 1 }}</td>
+
+          <!-- Team Name -->
+          <td>
+            <span *ngIf="editIndex !== i">{{ team.name }}</span>
+            <input
+              *ngIf="editIndex === i"
+              type="text"
+              [(ngModel)]="editName"
+              placeholder="Team Name"
+              style="width: 120px;"
+            />
+          </td>
+
+          <!-- Team Score -->
+          <td>
+            <span *ngIf="editIndex !== i">{{ team.score }}</span>
+            <input
+              *ngIf="editIndex === i"
+              type="number"
+              [(ngModel)]="editScore"
+              placeholder="Score"
+              style="width: 60px;"
+            />
+          </td>
+
+          <!-- Actions -->
+          <td>
+            <button
+              *ngIf="editIndex !== i"
+              (click)="startEditing(i, team.name, team.score)"
+            >
+              Edit
+            </button>
+            <button *ngIf="editIndex === i" (click)="saveChanges(team.id)">
+              Save
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

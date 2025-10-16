@@ -1,51 +1,51 @@
 <div class="leaderboard-container">
-    <h1 class="leaderboard-title">LEADER BOARD</h1>
-    <div class="leaderboard-columns">
-      <!-- Left Column Card -->
-      <div class="leaderboard-card">
-        <h2 class="column-title">Top 1-6</h2>
-        <div class="leaderboard-table">
-          <table>
-            <thead>
-              <tr>
-                <th>NO</th>
-                <th>Name</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let team of sortedTeams | slice:0:6; let i = index" [@fadeInAnimation]>
-                <td>{{ i + 1 }}</td>
-                <td>{{ team.name }}</td>
-                <td>{{ team.score }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <h1 class="leaderboard-title">LEADER BOARD</h1>
+
+  <div class="leaderboard-columns">
+    <!-- Left Column Card -->
+    <div class="leaderboard-card" *ngIf="leftTeams.length > 0">
+      <h2 class="column-title">{{ leftTitle }}</h2>
+      <div class="leaderboard-table">
+        <table>
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>Name</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let team of leftTeams; let i = index" [@fadeInAnimation]>
+              <td>{{ i + 1 }}</td>
+              <td>{{ team.name }}</td>
+              <td>{{ team.score }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-  
-      <!-- Right Column Card -->
-      <div class="leaderboard-card">
-        <h2 class="column-title">Top 7-12</h2>
-        <div class="leaderboard-table">
-          <table>
-            <thead>
-              <tr>
-                <th>NO</th>
-                <th>Name</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let team of sortedTeams | slice:6:12 ; let i = index" [@fadeInAnimation]>
-                <td>{{ i + 7 }}</td> <!-- Adding 11 to offset the index for the second column -->
-                <td>{{ team.name }}</td>
-                <td>{{ team.score }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    </div>
+
+    <!-- Right Column Card -->
+    <div class="leaderboard-card" *ngIf="rightTeams.length > 0">
+      <h2 class="column-title">{{ rightTitle }}</h2>
+      <div class="leaderboard-table">
+        <table>
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>Name</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let team of rightTeams; let i = index" [@fadeInAnimation]>
+              <td>{{ i + leftTeams.length + 1 }}</td>
+              <td>{{ team.name }}</td>
+              <td>{{ team.score }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  
+</div>

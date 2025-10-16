@@ -50,4 +50,14 @@ export class TeamService {
   getTeamsSorted(): Team[] {
     return [...this.teams].sort((a, b) => b.score - a.score);
   }
+
+  updateTeam(teamId: number, newName: string, newScore: number): void {
+    const team = this.teams.find(t => t.id === teamId);
+    if (team) {
+      team.name = newName;
+      team.score = newScore;
+      this.saveTeams();
+    }
+  }
+  
 }

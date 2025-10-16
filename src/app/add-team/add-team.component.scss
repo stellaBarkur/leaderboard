@@ -56,4 +56,25 @@
   thead tr {
     font-weight: bold;
   }
+
+  .error {
+    color: red;
+    margin-top: 4px;
+  }
+  
+  .hint {
+    font-size: 12px;
+    color: #666;
+  }
+
+  .inputs {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+  .manual-entry,
+.auto-generate {
+  margin-bottom: 20px;
+}
   
