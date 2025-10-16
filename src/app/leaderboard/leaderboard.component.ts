@@ -17,8 +17,28 @@ import { trigger, style, transition, animate } from '@angular/animations';
 })
 export class LeaderboardComponent implements OnInit {
   sortedTeams = this.teamService.getTeamsSorted();
+  leftTeams: any[] = [];
+  rightTeams: any[] = [];
+  leftTitle: string = '';
+  rightTitle: string = '';
 
   constructor(private teamService: TeamService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.splitTeams();
+  }
+
+  // ✅ Dynamically split teams into two halves & update titles
+  private splitTeams() {
+    this.sortedTeams = this.teamService.getTeamsSorted();
+    const total = this.sortedTeams.length;
+    const half = Math.ceil(total / 2);
+
+    this.leftTeams = this.sortedTeams.slice(0, half);
+    this.rightTeams = this.sortedTeams.slice(half);
+
+    // Dynamic column titles
+    this.leftTitle = `Top 1 - ${half}`;
+    this.rightTitle = total > half ? `Top ${half + 1} - ${total}` : '';
+  }
 }

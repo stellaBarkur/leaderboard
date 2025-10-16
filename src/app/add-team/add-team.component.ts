@@ -9,9 +9,12 @@ import { TeamService } from '../team.service';
 export class AddTeamComponent {
   teamName: string = '';
   teamScore: number | null = null;
+  teamCount: number | null = null;
   teams = this.teamService.getTeams();
   editIndex: number | null = null;
+  editName: string = '';
   editScore: number | null = null;
+  errorMessage: string = '';
 
   constructor(private teamService: TeamService) {}
 
@@ -20,22 +23,48 @@ export class AddTeamComponent {
       this.teamService.addTeam(this.teamName, this.teamScore);
       this.teamName = '';
       this.teamScore = null;
+      this.refreshScores();
     }
+  }
+
+  // 🆕 Generate multiple teams (same as before)
+  generateTeams() {
+    this.errorMessage = '';
+
+    if (this.teamCount === null || this.teamCount < 1) {
+      this.errorMessage = 'Please enter a valid number of teams.';
+      return;
+    }
+
+    if (this.teamCount > 20) {
+      this.errorMessage = 'Maximum of 20 teams allowed.';
+      return;
+    }
+
+    localStorage.clear();
+    for (let i = 1; i <= this.teamCount; i++) {
+      this.teamService.addTeam(`Team ${i}`, 0);
+    }
+
+    this.teamCount = null;
     this.refreshScores();
   }
 
-  startEditing(index: number, score: number) {
+  startEditing(index: number, name: string, score: number) {
     this.editIndex = index;
+    this.editName = name;
     this.editScore = score;
   }
 
-  saveScore(teamId: number) {
-    if (this.editScore !== null) {
-      this.teamService.updateScore(teamId, this.editScore);
+  // ✅ Save both name & score edits
+  saveChanges(teamId: number) {
+    if (this.editName.trim() && this.editScore !== null) {
+      this.teamService.updateTeam(teamId, this.editName, this.editScore);
       this.editIndex = null;
+      this.editName = '';
       this.editScore = null;
+      this.refreshScores();
     }
-    this.refreshScores();
   }
 
   refreshScores() {
@@ -44,5 +73,6 @@ export class AddTeamComponent {
 
   ClearAll() {
     localStorage.clear();
+    this.refreshScores();
   }
 }
