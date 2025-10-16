@@ -1,9 +1,9 @@
-<div class="leaderboard-container">
-  <h1 class="leaderboard-title">LEADER BOARD</h1>
+<div class="leaderboard-container" [@pageEnter]>
+  <h1 class="leaderboard-title">🏆 LEADER BOARD 🏆</h1>
 
   <div class="leaderboard-columns">
-    <!-- Left Column Card -->
-    <div class="leaderboard-card" *ngIf="leftTeams.length > 0">
+    <!-- Left Column -->
+    <div class="leaderboard-card" *ngIf="leftTeams.length > 0" [@cardEnter]>
       <h2 class="column-title">{{ leftTitle }}</h2>
       <div class="leaderboard-table">
         <table>
@@ -15,7 +15,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let team of leftTeams; let i = index" [@fadeInAnimation]>
+            <tr
+              *ngFor="let team of leftTeams; let i = index"
+              [@rowEnter]
+              [ngClass]="{ 'top-rank': i === 0, 'mid-rank': i > 0 && i < 3 }"
+            >
               <td>{{ i + 1 }}</td>
               <td>{{ team.name }}</td>
               <td>{{ team.score }}</td>
@@ -25,8 +29,8 @@
       </div>
     </div>
 
-    <!-- Right Column Card -->
-    <div class="leaderboard-card" *ngIf="rightTeams.length > 0">
+    <!-- Right Column -->
+    <div class="leaderboard-card" *ngIf="rightTeams.length > 0" [@cardEnter]>
       <h2 class="column-title">{{ rightTitle }}</h2>
       <div class="leaderboard-table">
         <table>
@@ -38,7 +42,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let team of rightTeams; let i = index" [@fadeInAnimation]>
+            <tr
+              *ngFor="let team of rightTeams; let i = index"
+              [@rowEnter]
+              [ngClass]="{
+                'top-rank': i + leftTeams.length === 0,
+                'mid-rank': i + leftTeams.length < 3
+              }"
+            >
               <td>{{ i + leftTeams.length + 1 }}</td>
               <td>{{ team.name }}</td>
               <td>{{ team.score }}</td>

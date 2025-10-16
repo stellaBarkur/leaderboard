@@ -94,4 +94,104 @@
       transform: translateY(0);
     }
   }
+
+  .leaderboard-container {
+    text-align: center;
+    padding: 20px;
+    background: radial-gradient(circle at top, #0a0f1f, #000);
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.5px;
+  }
+  
+  .leaderboard-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px #00bfff, 0 0 25px #0077ff;
+    animation: glowPulse 3s infinite alternate;
+  }
+  
+  @keyframes glowPulse {
+    0% {
+      text-shadow: 0 0 5px #00bfff, 0 0 15px #0077ff;
+    }
+    100% {
+      text-shadow: 0 0 25px #00bfff, 0 0 35px #0077ff;
+    }
+  }
+  
+  .leaderboard-columns {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+  
+  .leaderboard-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #00bfff;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+    border-radius: 12px;
+    width: 45%;
+    min-width: 320px;
+    padding: 20px;
+    transition: 0.3s ease;
+  }
+  
+  .leaderboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 191, 255, 0.7);
+  }
+  
+  .column-title {
+    color: #00bfff;
+    font-size: 1.4rem;
+    text-shadow: 0 0 10px #00bfff;
+    margin-bottom: 15px;
+  }
+  
+  .leaderboard-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .leaderboard-table th,
+  .leaderboard-table td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+  }
+  
+  .leaderboard-table tr:hover {
+    background: rgba(0, 191, 255, 0.1);
+    transform: scale(1.01);
+    transition: 0.2s ease;
+  }
+  
+  /* Top team glow effect */
+  .top-rank {
+    color: #ffcc00;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+    animation: topGlow 2s infinite alternate;
+  }
+  
+  @keyframes topGlow {
+    0% {
+      text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+    }
+    100% {
+      text-shadow: 0 0 25px #ffcc00, 0 0 40px #ffaa00;
+    }
+  }
+  
+  /* 2nd and 3rd place highlight */
+  .mid-rank {
+    color: #00ffcc;
+    font-weight: 600;
+    text-shadow: 0 0 10px #00ffcc;
+  }
+
+  
+  
   
